@@ -50,14 +50,11 @@ class CustomerUser  extends User {
   }
 }
 Future<Product> fetchProductDetails(String productName) async {
-  // Meniru penundaan pengambilan data dari server
   await Future.delayed(Duration(seconds: 2));
-  // Mengembalikan produk sebagai contoh
   return Product(productName, 100.0, true);
 }
 
 void main() async {
-  // Membuat pengguna
   AdminUser  admin = AdminUser ('Admin', 30);
   CustomerUser  customer = CustomerUser ('Customer', 25);
 
@@ -77,7 +74,6 @@ void main() async {
   customer.products = admin.products;
   customer.viewProducts();
 
-  // Menghapus produk
   admin.removeProduct('Laptop');
   customer.viewProducts();
 }
