@@ -1,9 +1,6 @@
 import 'dart:async';
-
-// Enum untuk Role
 enum Role { Admin, Customer }
 
-// Kelas Product
 class Product {
   String productName;
   double price;
@@ -11,23 +8,19 @@ class Product {
 
   Product(this.productName, this.price, this.inStock);
 }
-
-// Kelas User
 class User {
   String name;
   int age;
-  late List<Product> products; // Menggunakan late initialization
-  Role? role; // Nullable type
+  late List<Product> products; 
+  Role? role;
 
   User(this.name, this.age) {
     products = [];
   }
 }
-
-// Subclass AdminUser 
 class AdminUser  extends User {
   AdminUser (String name, int age) : super(name, age) {
-    role = Role.Admin; // Mengatur role sebagai Admin
+    role = Role.Admin;
   }
 
   void addProduct(Product product) {
@@ -44,11 +37,9 @@ class AdminUser  extends User {
     print('Produk "$productName" berhasil dihapus.');
   }
 }
-
-// Subclass CustomerUser 
 class CustomerUser  extends User {
   CustomerUser (String name, int age) : super(name, age) {
-    role = Role.Customer; // Mengatur role sebagai Customer
+    role = Role.Customer; 
   }
 
   void viewProducts() {
@@ -58,8 +49,6 @@ class CustomerUser  extends User {
     }
   }
 }
-
-// Fungsi asinkron untuk mengambil detail produk
 Future<Product> fetchProductDetails(String productName) async {
   // Meniru penundaan pengambilan data dari server
   await Future.delayed(Duration(seconds: 2));
@@ -72,7 +61,6 @@ void main() async {
   AdminUser  admin = AdminUser ('Admin', 30);
   CustomerUser  customer = CustomerUser ('Customer', 25);
 
-  // Menambahkan produk
   try {
     Product product1 = await fetchProductDetails('Laptop');
     admin.addProduct(product1);
@@ -80,18 +68,16 @@ void main() async {
     Product product2 = await fetchProductDetails('Smartphone');
     admin.addProduct(product2);
 
-    // Menambahkan produk yang tidak tersedia dalam stok
     Product product3 = Product('Tablet', 200.0, false);
-    admin.addProduct(product3); // Ini akan melempar exception
+    admin.addProduct(product3);
   } catch (e) {
     print('Error: $e');
   }
 
-  // Melihat produk oleh customer
-  customer.products = admin.products; // Customer melihat produk dari admin
+  customer.products = admin.products;
   customer.viewProducts();
 
   // Menghapus produk
   admin.removeProduct('Laptop');
-  customer.viewProducts(); // Melihat produk setelah penghapusan
+  customer.viewProducts();
 }
