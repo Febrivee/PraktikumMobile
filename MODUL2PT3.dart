@@ -1,4 +1,4 @@
-// Kelas ProdukDigital
+
 class ProdukDigital {
   String nama;
   double harga;
@@ -26,8 +26,6 @@ class ProdukDigital {
     return harga;
   }
 }
-
-// Kelas Karyawan
 class Karyawan {
   String nama;
   int umur;
@@ -39,8 +37,6 @@ class Karyawan {
     print('$nama bekerja sebagai $peran.');
   }
 }
-
-// Kelas Proyek
 class Proyek {
   String nama;
   List<Karyawan> tim;
@@ -60,8 +56,6 @@ class Proyek {
     }
   }
 }
-
-// Kelas Perusahaan
 class Perusahaan {
   List<Karyawan> karyawanAktif = [];
   List<ProdukDigital> produk = [];
@@ -103,18 +97,12 @@ class Perusahaan {
     }
   }
 }
-
-// Contoh penggunaan
 void main() {
   Perusahaan perusahaan = Perusahaan();
-
-  // Menambahkan karyawan
   Karyawan karyawan1 = Karyawan('Luffy', 27, 'Developer');
   Karyawan karyawan2 = Karyawan('Zoro', 28, 'Designer');
   perusahaan.tambahKaryawan(karyawan1);
   perusahaan.tambahKaryawan(karyawan2);
-
-  // Menambahkan produk digital
   ProdukDigital produk1 = ProdukDigital(
     'Automasi Jaringan',
     250000,
@@ -122,17 +110,14 @@ void main() {
   );
 
   perusahaan.tambahProduk(produk1);
-
-  // Menambahkan proyek
+  
   Proyek proyek1 = Proyek('Proyek pddy', [karyawan1, karyawan2]);
   perusahaan.tambahProyek(proyek1);
 
-  // Menampilkan data
   perusahaan.tampilkanKaryawan();
   perusahaan.tampilkanProduk();
   perusahaan.tampilkanProyek();
 
-  // Menghitung harga produk digital
   ProdukDigital produk = ProdukDigital('Router', 250000, 'NetworkAutomation');
   double hargaAkhir = (120);
   print('Harga akhir produk ${produk.nama} setelah diskon: $hargaAkhir');
